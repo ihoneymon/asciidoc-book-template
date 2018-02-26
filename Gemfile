@@ -16,5 +16,6 @@ gem 'pygments.rb'
 gem 'thread_safe'
 gem 'kindlegen'
 
+#epub 은 nogokiri 의존성 버전 충돌이 발생한다....
 #gem 'asciidoctor-epub3'
 #gem 'epubcheck'
