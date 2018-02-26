@@ -1,0 +1,2 @@
+publication
+#Gemfile.lock 도 해야하지만... bundle 설치 중 버전 맞추는 중 의존성 버전문제로 실패하는 경우가 많음
