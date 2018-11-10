@@ -14,7 +14,7 @@ gem 'nokogiri', '~> 1.8.1'
 gem 'coderay'
 gem 'pygments.rb'
 gem 'thread_safe'
-gem 'kindlegen'
+gem 'kindlegen', '~> 2.9.0'
 
 #epub 은 nogokiri 의존성 버전 충돌이 발생한다....
 #gem 'asciidoctor-epub3'
