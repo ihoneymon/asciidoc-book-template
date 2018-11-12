@@ -15,6 +15,7 @@ v0.0.1, 2018-02-26
 * 루비RUBY 설치
 * link:https://rubygems.org/[Ruby Gems] 설치
 * link:http://bundler.io/[bundler(http://bundler.io/)] 설치
+* link:https://pandoc.org/installing.html[Pandoc 설치]
 
 == 책쓰기 프로젝트 시작
 [source,console]
@@ -23,10 +24,11 @@ $ git clone git@github.com:ihoneymon/asciidoc-book-template.git
 $ cd asciidoctor-book-template
 $ git remote remove origin
 $ rm -rf .git
-$ bundle install
-$ ./build.sh    //<1>
+$ bundle install // <1>
+$ ./build.sh    // <2>
 ----
-<1> ``build.sh``를 실행하면 ``publication`` 디렉토리리가 생성되고 그 안에 ``html``, ``docx``와 ``pdf`` 파일이 생성된다.
+<1> ``Gemfile``을 읽어 ``Rakefile``을 실행하는데 필요한 의존성 라이브러리를 설치한다.
+<2> ``build.sh``를 실행하면 ``publication`` 디렉토리리가 생성되고 그 안에 ``html``, ``docx``와 ``pdf`` 파일이 생성된다.
 
 [NOTE]
 ====
@@ -44,7 +46,7 @@ bundle exec rake "book:build[publication]"
 빌드를 실행하면 ``asciidoctor-pdf-cjk-kai_gen_gothic``를 다운로드(하는 척) 하지만 실제로는 다운로드가 일어나지 않는다. asciidoctor-pdf 한글을 랜더링 하기 위해 한글폰트를 필요로 한다. 그 때는
 link:https://www.dropbox.com/s/wn68fkdt93kkkw6/asciidoctor-pdf-font.tar?dl=0[]를 내려받고 ``gems/asciidoctor-pdf-cjk-kai_gen_gothic-0.1.1/data/fonts/`` 위치에 풀어넣으면 된다.
 
-어떤 이유에서인지 ``asciidoctor-pdf-cjk-kai_gen_gothic-0.1.1`` 폰트를 내려받을 수 없게 되어 있다. 
+``asciidoctor-pdf-cjk-kai_gen_gothic-0.1.1`` 폰트를 내려받을 수 없게 되어 있다. 
 ====
 
 == 기타

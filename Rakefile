@@ -23,9 +23,11 @@ namespace :book do
     `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book/book.asc -o ./publication/#{destination_name}.pdf`
     puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
-#    puts "Converting to EPUB... (this one takes a while)"
-#    `bundle exec asciidoctor-epub3 -a ebook-validate #{destination_name}.asc`
-#    puts " -- EPUB  output at #{destination_name}.epub"
+    puts "Converting to EPUB... (this one takes a while)"
+    `bundle exec asciidoctor -d book -b docbook5 ./book/book.adoc -o ./publication/#{destination_name}.docbook`
+    `pandoc -f docbook -t epub ./publication/#{destination_name}.docbook -o ./publication/#{destination_name}.epub`
+    puts " -- EPUB  output at ./publication/#{destination_name}.epub"
+
   end
 
 end
