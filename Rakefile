@@ -12,7 +12,7 @@ namespace :book do
   task :build, [:destination] => :prebuild do |t, args|
     destination_name = args[:destination]
     puts "Converting to HTML..."
-    `bundle exec asciidoctor ./book/book.asc -o ./publication/#{destination_name}.html`
+    `bundle exec asciidoctor ./book/book.adoc -o ./publication/#{destination_name}.html`
     puts " -- HTML output:: ./publication/#{destination_name}.html"
 
     puts "converting to DOCX... (this one takes a while)"
@@ -20,7 +20,7 @@ namespace :book do
     puts " -- DOCX  output:: ./publication/#{destination_name}.docx"
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book/book.asc -o ./publication/#{destination_name}.pdf`
+    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book/book.adoc -o ./publication/#{destination_name}.pdf`
     puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
     puts "Converting to EPUB... (this one takes a while)"

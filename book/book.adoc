@@ -16,22 +16,22 @@ v0.0.1, 2018/02/26
 //:front-cover-image: image:book/cover.jpg[]
 
 // ::placeholder::
-include::placeholder.asc[]
+include::placeholder.adoc[]
 ////
 책에서 많이 사용하는 단어에 대한 위치변환자(Placeholder)로 사용된다.
 ////
 
 //==== 서문:Preface ====
 :sectnums!:
-include::preface/preface.asc[]
+include::preface/preface.adoc[]
 
 
 //==== 본문:Body ====
 :sectnums:
-include::body/body.asc[]
+include::body/body.adoc[]
 
 ***
 
 //==== 부록:Appendix ====
 :sectnums!:
-include::appendix/appendix.asc[]
+include::appendix/appendix.adoc[]

@@ -3,10 +3,11 @@
 "<<c01>>"에서는 허니몬의 이야기를 시작한다.
 
 //====
-include::01-01-starting.asc[]
+include::01-01-starting.adoc[]
 
 //====
 
 [[c01-next-chap]]
 === {next-chap}
 //다음 장 소개
+
