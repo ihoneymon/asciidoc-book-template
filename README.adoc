@@ -11,8 +11,39 @@ v0.0.1, 2018-02-26
 ====
 ****
 
+== 조기 설치방법 (최신 환경 기준)
+이 프로젝트는 최신 **Asciidoctor 2.x** 환경에서 정상 작동하도록 업데이트되었습니다. macOS 기준, 아래 순서대로 실행하여 환경을 구축하세요.
+
+1. **최신 Ruby 설치 (Homebrew 이용)**
+[source,console]
+----
+$ brew install ruby
+----
+
+2. **환경 변수 설정**
+설치된 Ruby를 우선 사용하도록 셸 설정 파일(`.zshrc` 등)에 아래 내용을 추가하세요. (현재 세션에서 바로 적용하려면 터미널에 복사-붙여넣기 하세요.)
+[source,console]
+----
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export GEM_HOME=$HOME/.gem/ruby/4.0.0
+export PATH="$GEM_HOME/bin:$PATH"
+----
+
+3. **필수 라이브러리(Gems) 설치**
+[source,console]
+----
+$ gem install rake asciidoctor asciidoctor-pdf asciidoctor-epub3 asciidoctor-diagram rouge
+----
+
+4. **한글 폰트 및 빌드 확인**
+한글 PDF 생성을 위해 나눔고딕 폰트(`fonts/`)와 테마(`pdf-theme.yml`)가 준비되어 있습니다. 아래 명령으로 빌드하세요.
+[source,console]
+----
+$ rake book:build
+----
+
 == 문서생성을 위한 사전요구사항
-* 루비RUBY 설치
+* 루비RUBY 설치 (v3.x 이상 권장)
 * link:https://rubygems.org/[Ruby Gems] 설치
 * link:http://bundler.io/[bundler(http://bundler.io/)] 설치
 * link:https://pandoc.org/installing.html[Pandoc 설치]

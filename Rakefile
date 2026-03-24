@@ -1,8 +1,11 @@
+require 'fileutils'
+
 namespace :book do
   desc 'prepare build'
   task :prebuild do
-    Dir.mkdir 'images' unless Dir.exists? 'images'
-    Dir.glob("book/*/images/*").each do |image|
+    Dir.mkdir 'images' unless Dir.exist? 'images'
+    # 이미지 파일이 있는 경로를 현재 구조에 맞춰 탐색
+    Dir.glob("{body,preface,appendix}/**/images/*").each do |image|
       FileUtils.copy(image, "images/" + File.basename(image))
     end
     Dir.mkdir 'publication' unless Dir.exist? 'publication'
@@ -10,26 +13,31 @@ namespace :book do
 
   desc 'build basic book formats'
   task :build, [:destination] => :prebuild do |t, args|
-    destination_name = args[:destination]
+    destination_name = args[:destination] || 'book'
+    
+    # 젬들이 직접 설치된 경로를 사용하기 위해 bundle exec를 제거합니다.
     puts "Converting to HTML..."
-    `bundle exec asciidoctor ./book.adoc -o ./publication/#{destination_name}.html`
+    `asciidoctor ./book.adoc -o ./publication/#{destination_name}.html`
     puts " -- HTML output:: ./publication/#{destination_name}.html"
 
     puts "converting to DOCX... (this one takes a while)"
-    `pandoc -s ./publication/#{destination_name}.html -o ./publication/#{destination_name}.docx`
-    puts " -- DOCX  output:: ./publication/#{destination_name}.docx"
+    if system("command -v pandoc > /dev/null")
+      `pandoc -s ./publication/#{destination_name}.html -o ./publication/#{destination_name}.docx`
+      puts " -- DOCX  output:: ./publication/#{destination_name}.docx"
+    else
+      puts " -- Skipping DOCX (pandoc not found)"
+    end
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book.adoc -o ./publication/#{destination_name}.pdf`
+    # 최신 한글 폰트와 테마를 적용하여 PDF를 생성합니다.
+    `asciidoctor-pdf -a pdf-theme=./pdf-theme.yml -a pdf-fontsdir=./fonts -a scripts=cjk ./book.adoc -o ./publication/#{destination_name}.pdf`
     puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
+
     puts "Converting to EPUB... (this one takes a while)"
-    `bundle exec asciidoctor -d book -b docbook5 ./book.adoc -o ./publication/#{destination_name}.docbook`
-    `pandoc -f docbook -t epub ./publication/#{destination_name}.docbook -o ./publication/#{destination_name}.epub`
+    `asciidoctor-epub3 ./book.adoc -o ./publication/#{destination_name}.epub`
     puts " -- EPUB  output at ./publication/#{destination_name}.epub"
-
   end
-
 end
 
 task :default => "book:build"

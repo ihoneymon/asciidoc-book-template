@@ -1,0 +1,16 @@
+font:
+  catalog:
+    NanumGothic:
+      normal: NanumGothic-Regular.ttf
+      bold: NanumGothic-Bold.ttf
+      italic: NanumGothic-Regular.ttf
+      bold_italic: NanumGothic-Bold.ttf
+  fallbacks:
+    - NanumGothic
+base:
+  font-family: NanumGothic
+heading:
+  font-family: NanumGothic
+code:
+  font-family: NanumGothic
+# extends: default 를 제거하여 의존성 충돌을 피합니다.

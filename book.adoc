@@ -11,8 +11,9 @@ v0.0.1, 2018/02/26
 :page-layout: docs
 :toc: left
 :toclevels: 3
-:source-highlighter: coderay
+:source-highlighter: rouge
 :encoding: utf-8
+:scripts: cjk
 //:front-cover-image: image:book/cover.jpg[]
 
 // ::placeholder::
