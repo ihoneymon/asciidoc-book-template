@@ -10,6 +10,7 @@ gem 'nokogiri', '>= 1.19.1'
 
 gem 'asciidoctor'
 gem 'asciidoctor-pdf', '>= 2.0'
+gem 'asciidoctor-epub3'
 gem 'asciidoctor-diagram'
 
 gem 'rouge'
