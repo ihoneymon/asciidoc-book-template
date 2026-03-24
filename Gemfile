@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
+ruby File.read(File.join(__dir__, '.ruby-version')).strip
+
 gem 'rake'
 gem 'concurrent-ruby'
 gem 'awesome_print'
 
-# Ruby 2.6 환경에서 시스템 권한 없이 설치하기 위해 호환성 보장
-gem 'ffi', '~> 1.15.5'
-gem 'nokogiri', '~> 1.13.10'
+gem 'nokogiri', '>= 1.19.1'
 
-gem 'asciidoctor', '~> 2.0.23'
-gem 'asciidoctor-pdf', '~> 2.3.9'
-gem 'asciidoctor-diagram', '~> 2.2.0'
+gem 'asciidoctor'
+gem 'asciidoctor-pdf', '>= 2.0'
+gem 'asciidoctor-diagram'
 
-gem 'rouge', '~> 4.2.0'
+gem 'rouge'
