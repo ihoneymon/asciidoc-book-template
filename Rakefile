@@ -17,7 +17,7 @@ namespace :book do
     
     # 젬들이 직접 설치된 경로를 사용하기 위해 bundle exec를 제거합니다.
     puts "Converting to HTML..."
-    `asciidoctor ./book.adoc -o ./publication/#{destination_name}.html`
+    `bundle exec asciidoctor ./book.adoc -o ./publication/#{destination_name}.html`
     puts " -- HTML output:: ./publication/#{destination_name}.html"
 
     puts "converting to DOCX... (this one takes a while)"
@@ -29,13 +29,12 @@ namespace :book do
     end
 
     puts "Converting to PDF... (this one takes a while)"
-    # 최신 한글 폰트와 테마를 적용하여 PDF를 생성합니다.
-    `asciidoctor-pdf -a pdf-theme=./pdf-theme.yml -a pdf-fontsdir=./fonts -a scripts=cjk ./book.adoc -o ./publication/#{destination_name}.pdf`
+    `bundle exec asciidoctor-pdf -a pdf-theme=./pdf-theme.yml -a pdf-fontsdir=./fonts -a scripts=cjk ./book.adoc -o ./publication/#{destination_name}.pdf`
     puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
-
     puts "Converting to EPUB... (this one takes a while)"
-    `asciidoctor-epub3 ./book.adoc -o ./publication/#{destination_name}.epub`
+    # asciidoctor-epub3 2.x removed bundled CJK fonts; e-readers handle Korean natively
+    `bundle exec asciidoctor-epub3 -a scripts! ./book.adoc -o ./publication/#{destination_name}.epub`
     puts " -- EPUB  output at ./publication/#{destination_name}.epub"
   end
 end
